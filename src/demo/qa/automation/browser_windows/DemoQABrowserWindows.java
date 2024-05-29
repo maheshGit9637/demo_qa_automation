@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -104,18 +105,14 @@ public class DemoQABrowserWindows {
 		element.click();
 		Thread.sleep(4000);
 
-		List<String> windows = (List<String>) driver.getWindowHandles();
+		Set<String> windows = driver.getWindowHandles();
 
-		System.out.println("how many windows are opened expected - 3 actual - " + windows.size());
+		System.out.println("how many windows are opened expected - 4 actual - " + windows.size());
 
-		driver.switchTo().window(windows.get(0));
-		Thread.sleep(5000);
-
-		driver.switchTo().window(windows.get(1));
-		Thread.sleep(5000);
-
-		driver.switchTo().window(windows.get(2));
-		Thread.sleep(5000);
+		for (String i : windows) {
+			driver.switchTo().window(i);
+			Thread.sleep(5000);
+		}
 
 		// ---------------------------------------------------------------
 
