@@ -42,10 +42,10 @@ public class DemoQAForms {
 
 	public static void main(String[] args) throws InterruptedException, IOException, WebDriverException {
 		// TODO Auto-generated method stub
-		// set browser driver for JVM and compiler
+		// set browser driver for JVM and compiler (browser driver exe path)
 		System.setProperty("webdriver.gecko.driver", "C:\\BrowserDrivers\\FireFoxDriver\\geckodriver.exe");
 
-		// set browser binary for browser driver
+		// set browser binary of actual browser(actual browser exe path)
 		FirefoxOptions fireFoxOptions = new FirefoxOptions();
 		fireFoxOptions.setBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
 
