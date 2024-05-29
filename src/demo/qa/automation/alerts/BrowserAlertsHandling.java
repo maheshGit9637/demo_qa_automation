@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.LinkedList;
 import java.util.Set;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,6 +17,9 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import com.google.common.io.Files;
 
 public class BrowserAlertsHandling {
@@ -62,10 +67,11 @@ public class BrowserAlertsHandling {
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
 
 		// get some test url opened in address bar
-		driver.get("https://demoqa.com/browser-windows");
+		driver.get("https://demoqa.com/alerts");
 
 		// create javascript executor as object
 		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
 		// ---------------------------------------------------------------
 		// get the title of the web page
@@ -75,7 +81,35 @@ public class BrowserAlertsHandling {
 		// get the url of the web page
 		System.out.println("url of web page : " + driver.getCurrentUrl());
 		// ---------------------------------------------------------------
- 
+
+		WebElement element = driver.findElement(By.cssSelector("button[id='alertButton'][type='button']"));
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		element.click();
+		Thread.sleep(2500);
+		driver.switchTo().alert().accept();
+
+		element = driver.findElement(By.xpath("//button[@id='timerAlertButton' and @type='button']"));
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		element.click();
+		wait.until(ExpectedConditions.alertIsPresent());
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.alertIsPresent());
+		driver.switchTo().alert().accept();
+
+		element = driver.findElement(By.cssSelector("button[id='confirmButton'][type='button']"));
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		element.click();
+		wait.until(ExpectedConditions.alertIsPresent());
+		Thread.sleep(2500);
+		driver.switchTo().alert().dismiss();
+		System.out.println("dismissed : " + driver.findElement(By.id("confirmResult")).getText());
+
+		element = driver.findElement(By.cssSelector("button[id='promtButton'][type='button']"));
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		element.click();
+		wait.until(ExpectedConditions.alertIsPresent());
+		driver.switchTo().alert().accept();
+
 		System.out.println("======================================================================================");
 		driver.quit();
 	}
