@@ -59,7 +59,7 @@ public class BrowserAlertsHandling {
 		driver.manage().deleteAllCookies();
 
 		// set page load timeout
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(255));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
 
 		// get some test url opened in address bar
 		driver.get("https://demoqa.com/browser-windows");
@@ -75,55 +75,7 @@ public class BrowserAlertsHandling {
 		// get the url of the web page
 		System.out.println("url of web page : " + driver.getCurrentUrl());
 		// ---------------------------------------------------------------
-
-		String firstTab = driver.getWindowHandle();
-
-		System.out.println("======================================================================================");
-		// ---------------------------------------------------------------
-		Thread.sleep(500);
-		System.out.println("let us click on different tabs");
-		WebElement element = driver.findElement(By.cssSelector("button[id=\"tabButton\"]"));
-		js.executeScript("arguments[0].scrollIntoView(true);", element);
-		element.click();
-		Thread.sleep(2000);
-		String secondTab = driver.getWindowHandle();
-		Thread.sleep(2000);
-
-		driver.switchTo().window(firstTab);
-		Thread.sleep(2000);
-
-		element = driver.findElement(By.cssSelector("button[id=\"windowButton\"]"));
-		js.executeScript("arguments[0].scrollIntoView(true);", element);
-		element.click();
-		Thread.sleep(2000);
-		String thirdTab = driver.getWindowHandle();
-		Thread.sleep(4000);
-
-		driver.switchTo().window(firstTab);
-		Thread.sleep(4000);
-
-		element = driver.findElement(By.cssSelector("button[id=\"messageWindowButton\"]"));
-		js.executeScript("arguments[0].scrollIntoView(true);", element);
-		element.click();
-		Thread.sleep(2000);
-		String fourthTab = driver.getWindowHandle();
-		Thread.sleep(4000);
-
-		Set<String> windows = driver.getWindowHandles();
-
-		System.out.println("how many windows are opened expected - 4 actual - " + windows.size());
-
-		LinkedList<String> y = new LinkedList<String>();
-		Thread.sleep(2000);
-
-		int n = 1;
-		for (String i : windows) {
-			driver.switchTo().window(i);
-			Thread.sleep(2000);
-		}
-
-		// ---------------------------------------------------------------
-
+ 
 		System.out.println("======================================================================================");
 		driver.quit();
 	}
