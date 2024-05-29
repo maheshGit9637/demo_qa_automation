@@ -1,13 +1,10 @@
-package demo.qa.automation.browser_windows;
+package demo.qa.automation.alerts;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
@@ -18,10 +15,9 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
-
 import com.google.common.io.Files;
 
-public class DemoQABrowserWindows {
+public class BrowserAlertsHandling {
 
 	public static void takeScreenShot(String destFilePath, WebDriver driver) {
 		// Take screenshot and save it to a file
