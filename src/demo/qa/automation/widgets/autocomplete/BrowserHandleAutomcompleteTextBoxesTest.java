@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.common.io.Files;
 
-public class Test {
+public class BrowserHandleAutomcompleteTextBoxesTest {
 
 	public static void takeScreenShot(String destFilePath, WebDriver driver) {
 		// Take screenshot and save it to a file
